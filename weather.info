@@ -1,0 +1,4 @@
+name = Weather
+description = Enables the response of weather-related queries from Eva.
+version = 0.1.0
+dependencies = conversations

@@ -1,0 +1,5 @@
+darksky_api_key = string(default='')
+location = string(default='')
+latitude = float(-90.0, 90.0)
+longitude = float(-180.0, 180.0)
+metric = boolean(default=True)
