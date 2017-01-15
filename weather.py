@@ -21,6 +21,7 @@ def eva_interaction(context):
 @gossip.register('eva.conversations.follow_up')
 def eva_conversations_follow_up(plugin, context):
     if plugin == 'weather':
+        log.info('Weather plugin handling follow-up question')
         response = get_follow_up_response(context)
         context.set_output_text(response)
 
@@ -101,8 +102,8 @@ def get_current_values(forecast, metric=True):
             'cloud_cover': cloud_cover}
 
 def get_lat_lng():
-    lat, lng = (conf['plugins']['weather']['config']['latitude'], \
-                conf['plugins']['weather']['config']['longitude'])
+    lat, lng = (conf['plugins']['weather']['config'].get('latitude', None), \
+                conf['plugins']['weather']['config'].get('longitude'))
     if lat is None or lat == '' or lng is None or lng == '':
         if conf['plugins']['weather']['config']['location'] == '':
             # Get by IP.
@@ -130,7 +131,7 @@ def get_forecast():
         forecast = forecastio.load_forecast(api_key, lat, lng)
         return forecast
     except requests.exceptions.HTTPError as err:
-        log.error('Http error fetching weather: %s' %err)
+        log.error('Http error fetching weather - ensure you have set up your API key: %s' %err)
     except Exception as err:
         log.error('Unknown error fetching weather: %s' %err)
     return None
