@@ -23,7 +23,8 @@ def eva_conversations_follow_up(plugin, context):
     if plugin == 'weather':
         log.info('Weather plugin handling follow-up question')
         response = get_follow_up_response(context)
-        context.set_output_text(response)
+        if response is not None and len(response) > 0:
+            context.set_output_text(response)
 
 def get_follow_up_response(context):
     forecast = get_forecast()
