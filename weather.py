@@ -14,7 +14,9 @@ from eva import log
 
 @gossip.register('eva.interaction')
 def eva_interaction(context):
-    if not context.response_ready() and context.contains('weather'):
+    if not context.response_ready() and \
+           (context.contains('weather') or \
+            context.contains('forecast')):
         response = get_basic_weather_response()
         context.set_output_text(response)
 
