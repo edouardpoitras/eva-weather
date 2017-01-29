@@ -1,8 +1,5 @@
 """
 https://darksky.net/dev/docs/response#data-point
-
-TODO: Implements a job that checks for severe weather warnings in user's area.
-https://darksky.net/dev/docs/response#alerts
 """
 import gossip
 import requests
