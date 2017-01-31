@@ -18,8 +18,8 @@ def eva_interaction(context):
         context.set_output_text(response)
 
 @gossip.register('eva.conversations.follow_up')
-def eva_conversations_follow_up(plugin, context):
-    if plugin == 'weather':
+def eva_conversations_follow_up(plugin_id, context):
+    if plugin_id == 'weather':
         log.info('Weather plugin handling follow-up question')
         response = get_follow_up_response(context)
         if response is not None and len(response) > 0:
